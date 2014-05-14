@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="14" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -22,7 +22,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/runt_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
@@ -51,8 +51,36 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".RouteListActivity" />
         </activity>
-        <provider android:name="RoutesContentProvider"    
-            android:authorities="uk.ac.brookes.bourgein.mapsproject.routes"></provider>
+
+        <provider
+            android:name="uk.ac.brookes.bourgein.mapsproject.RoutesContentProvider"
+            android:authorities="uk.ac.brookes.bourgein.mapsproject.routes" >
+        </provider>
+
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.LaunchActivity"
+            android:label="@string/title_activity_launch" >
+        </activity>
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.PrefsActivity"
+            android:label="@string/title_activity_prefs" >
+        </activity>
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.RoutesListActivity"
+            android:label="@string/title_activity_routes_list" >
+        </activity>
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.RouteMapActivity"
+            android:label="@string/title_activity_route_map" >
+        </activity>
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.SharedMenuActivity"
+            android:label="@string/title_activity_shared_menu" >
+        </activity>
+        <activity
+            android:name="uk.ac.brookes.bourgein.mapsproject.ResultsActivity"
+            android:label="@string/title_activity_results" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,91 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/black"
+    tools:context=".PrefsActivity" >
+
+    <TextView
+        android:id="@+id/prefsUnameLabel"
+        style="@style/whiteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/prefsUnameEdit"
+        android:layout_alignParentLeft="true"
+        android:text="@string/username" />
+    
+    <EditText
+        android:id="@+id/prefsUnameEdit"
+        style="@style/whiteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+    
+    <TextView
+        android:id="@+id/prefsAutoUlLabel"
+        style="@style/whiteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prefsUnameLabel"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="40dp"
+        android:text="@string/autoupload" />
+
+    <Switch
+        android:id="@+id/prefsAutoUlSwitch"
+        style="@style/whiteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/prefsAutoUlLabel"
+        android:layout_alignBottom="@+id/prefsAutoUlLabel"
+        android:layout_alignRight="@+id/prefsUnameEdit"/>
+
+    <Button
+        android:id="@+id/prefsSaveButton"
+        style="@style/whiteText"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/blue_button"
+        android:layout_below="@+id/prefsAutoUlSwitch"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:text="@string/save" />
+    
+    <View 
+        android:id="@+id/prefsHozLine"
+        android:layout_below="@id/prefsSaveButton"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="1dp"
+        android:background="@color/fluro_blue"/>
+    
+    <Button
+        android:id="@+id/prefsSyncToButton"
+        style="@style/whiteText"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/blue_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/sync_to_server" />
+    
+    <Button
+        android:id="@+id/prefsSyncFromButton"
+        style="@style/whiteText"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/blue_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:text="@string/sync_from_server" />
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="fluro_pink">#ff33cc</color>
+    <color name="lighter_pink">#FA98E2</color>
+    <color name="black">#000000</color>
+    <color name="fluro_blue">#00d2ff</color>
+    <color name="lighter_blue">#b1effc</color>
+    <color name="white">#FFFFFF</color>
+
+</resources>

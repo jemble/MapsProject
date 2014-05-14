@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.net.Uri;
+import android.util.Log;
 
 public class RoutesContentProvider extends ContentProvider {
 	private static final String AUTHORITY = "uk.ac.brookes.bourgein.mapsproject.routes";
@@ -21,15 +22,18 @@ public class RoutesContentProvider extends ContentProvider {
 	public static final String KEY_ID = "_id";
 	public static final String KEY_USERID = "user_id";
 	public static final String KEY_ROUTEDETAILS = "route_details";
+	public static final String KEY_UPLOADED = "uploaded";
+	public static final int ID_COLUMN = 0;
 	public static final int USERID_COLUMN = 1;
 	public static final int ROUTEDETAILS_COLUMN = 2;
+	public static final int UPLOADED_COLUMN = 3; 
 	
 	private static final int ROUTES = 1;
 	private static final int ROUTE_ID = 2;
 	private static final UriMatcher uriMatcher;
 	
 	private static final String DATABASE_NAME = "routes.db";
-	private static final int DATABASE_VERSION = 1;
+	private static final int DATABASE_VERSION = 2;
 	
 	static {
 		uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -38,8 +42,8 @@ public class RoutesContentProvider extends ContentProvider {
 	}
 	
 	@Override
-	public int delete(Uri arg0, String arg1, String[] arg2) {
-		// TODO Auto-generated method stub
+	public int delete(Uri uri, String where, String[] whereArgs) {
+		routesDB.delete(ROUTES_TABLE,where, whereArgs);
 		return 0;
 	}
 
@@ -61,7 +65,7 @@ public class RoutesContentProvider extends ContentProvider {
 		if (rowId > 0){
 			Uri newUri = ContentUris.withAppendedId(CONTENT_URI, rowId);
 			getContext().getContentResolver().notifyChange(newUri, null);
-			return uri;
+			return newUri;
 		}
 		else{
 			throw new SQLException("Failed to insert row "+ rowId);
@@ -87,15 +91,14 @@ public class RoutesContentProvider extends ContentProvider {
 		
 		Cursor c = qb.query(routesDB,projection,selection,selectionArgs,null,null,sortOrder);
 		c.setNotificationUri(getContext().getContentResolver(), uri);
-		
+		Log.i("JEM",selection);
 		return c;
 	}
 
 	@Override
 	public int update(Uri uri, ContentValues values, String selection,
 			String[] selectionArgs) {
-		// TODO Auto-generated method stub
-		return 0;
+		return routesDB.update(ROUTES_TABLE, values, selection, selectionArgs);
 	}
 	
 	private static class RoutesDatabaseHelper extends SQLiteOpenHelper{
@@ -108,7 +111,7 @@ public class RoutesContentProvider extends ContentProvider {
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL("CREATE TABLE " + ROUTES_TABLE + " (" + KEY_ID
 					+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + KEY_USERID
-					+ " TEXT," + KEY_ROUTEDETAILS + " TEXT);");
+					+ " TEXT," + KEY_ROUTEDETAILS + " TEXT, " + KEY_UPLOADED + " INTEGER);");
 
 		}
 
